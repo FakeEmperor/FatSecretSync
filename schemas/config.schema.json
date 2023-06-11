@@ -1,0 +1,139 @@
+{
+  "title": "AppConfig",
+  "type": "object",
+  "properties": {
+    "fatsecret": {
+      "$ref": "#/definitions/FatSecretConfig"
+    },
+    "telegram": {
+      "$ref": "#/definitions/TelegramConfig"
+    },
+    "user_backend": {
+      "$ref": "#/definitions/UserBackendConfig"
+    }
+  },
+  "required": [
+    "fatsecret",
+    "telegram",
+    "user_backend"
+  ],
+  "definitions": {
+    "OAuth1Credentials": {
+      "title": "OAuth1Credentials",
+      "type": "object",
+      "properties": {
+        "consumer_key": {
+          "title": "Consumer Key",
+          "type": "string"
+        },
+        "consumer_secret": {
+          "title": "Consumer Secret",
+          "type": "string"
+        }
+      },
+      "required": [
+        "consumer_key",
+        "consumer_secret"
+      ]
+    },
+    "OAuth2Credentials": {
+      "title": "OAuth2Credentials",
+      "type": "object",
+      "properties": {
+        "client_id": {
+          "title": "Client Id",
+          "type": "string"
+        },
+        "client_secret": {
+          "title": "Client Secret",
+          "type": "string"
+        }
+      },
+      "required": [
+        "client_id",
+        "client_secret"
+      ]
+    },
+    "FatSecretConfig": {
+      "title": "FatSecretConfig",
+      "description": "API access credentials. Both are required to access the API, since\nFatSecret API calls use OAuth1 for one set of calls (food, branding, ), and OAuth2 for another.",
+      "type": "object",
+      "properties": {
+        "oauth1": {
+          "$ref": "#/definitions/OAuth1Credentials"
+        },
+        "oauth2": {
+          "$ref": "#/definitions/OAuth2Credentials"
+        }
+      },
+      "required": [
+        "oauth1",
+        "oauth2"
+      ]
+    },
+    "TelegramConfig": {
+      "title": "TelegramConfig",
+      "type": "object",
+      "properties": {
+        "admin_id": {
+          "title": "Admin Id",
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "bot_token": {
+          "title": "Bot Token",
+          "type": "string"
+        }
+      },
+      "required": [
+        "admin_id",
+        "bot_token"
+      ]
+    },
+    "FilesUserBackendConfig": {
+      "title": "FilesUserBackendConfig",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "default": "creds.yaml",
+          "type": "string"
+        },
+        "root": {
+          "title": "Root",
+          "default": ".",
+          "type": "string",
+          "format": "path"
+        },
+        "user_isolation": {
+          "title": "User Isolation",
+          "default": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "UserBackendConfig": {
+      "title": "UserBackendConfig",
+      "type": "object",
+      "properties": {
+        "active": {
+          "title": "Active",
+          "default": "files",
+          "type": "string"
+        },
+        "files": {
+          "$ref": "#/definitions/FilesUserBackendConfig"
+        }
+      },
+      "required": [
+        "files"
+      ]
+    }
+  }
+}

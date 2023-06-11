@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fatsecret-sync"
+dynamic = ["dependencies", "version"]
+requires-python = ">=3.11"
+description = "FatSecret API, apps and tools for personal use"
+keywords = ["api", "utils", "health", "nutrition", "food-tracking", "fatsecret"]
+classifiers = ["License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)", "Programming Language :: Python :: 3.11", "Environment :: Console"]
+
+[tool.setuptools]
+package-dir = {"fatsecret_sync" = "fatsecret_sync"}
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+
+[project.optional-dependencies]
+dev = [
+    "black==23.*",
+    "pytest==7.2.*",
+    "pytest-cov==4.0.*",
+    "coverage==7.*",
+    "green==3.4.*",
+    "isort==5.12.*",
+    "pylint",
+    "jinja2==3.1.*",
+]
+
+[tool.setuptools_scm]
+write_to = "fatsecret_sync/_version.py"
+
+[tool.black]
+line-length = 130
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 130
+
+[tool.pylint.format]
+max-line-length = 130
+
+[tool.pylint.MASTER]
+fail-under = '8.0'
+jobs = 0
+# Control the amount of potential inferred values when inferring a single
+# object. This can help the performance when dealing with large functions or
+# complex, nested conditions.
+limit-inference-results = 100
+suggestion-mode = 'yes'

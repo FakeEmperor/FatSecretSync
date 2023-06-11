@@ -1,0 +1,26 @@
+# IDE Project Files
+/.idea/
+/.vscode/
+
+# Python Environments
+.venv/
+.env/
+
+# Caches and transient files
+*.pyc
+.pytest_cache/
+__pycache__
+*.egg-info
+_version.py
+build/
+
+# Data files
+/data/
+/data/files/
+/data/db_data/
+
+# Project Secrets and Local Environments
+.env
+*.env
+creds.yaml
+collected_keys.yaml
